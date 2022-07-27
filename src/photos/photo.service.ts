@@ -21,5 +21,10 @@ export class PhotoService {
     async getAllPhotos(): Promise<Photo[]> {
         return await this.photoModel.find();
     }
+
+    async getPhotoById(id): Promise<Photo> {
+        return await this.photoModel.findById(id)
+    }
 }
+
 

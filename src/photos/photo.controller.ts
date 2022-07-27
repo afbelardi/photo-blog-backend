@@ -39,4 +39,14 @@ export class PhotoController {
             throw new BadRequestException(error.message);
         }
     }
+
+    @Get(':id')
+    async getPhotoById(id) {
+        try {
+            console.log(id)
+            // return await this.photoService.getPhotoById(id)
+        } catch(error) {
+            throw new BadRequestException(error.message);
+        }
+    }
 }
