@@ -19,7 +19,7 @@ export class PhotoService {
     }
 
     async getAllPhotos(): Promise<Photo[]> {
-        return await this.photoModel.find();
+        return await this.photoModel.find().sort({ createdAt: -1});
     }
 
     async getPhotoById(id): Promise<Photo> {
