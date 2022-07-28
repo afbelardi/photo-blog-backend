@@ -12,7 +12,7 @@ export class Photo {
     public url: string;
 
     @Prop()
-    public dateTaken: number;
+    public dateTaken: string;
 
     @Prop()
     public placeTaken: string;
