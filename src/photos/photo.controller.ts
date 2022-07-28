@@ -10,7 +10,7 @@ import { Body,
     Delete,
     UseGuards,
     Req } from '@nestjs/common';
-import { PhotoDTO } from './photo.dto';
+import { PhotoDTO, UpdatePhotoDTO } from './photo.dto';
 import { Photo } from './photo.entity';
 import { PhotoService } from './photo.service';
 
@@ -31,7 +31,7 @@ export class PhotoController {
     }
 
 
-    @Get('')
+    @Get()
     async getAllPhotos(): Promise<Photo[]> {
         try {
             return await this.photoService.getAllPhotos()
@@ -41,10 +41,21 @@ export class PhotoController {
     }
 
     @Get(':id')
-    async getPhotoById(id) {
+    async getPhotoById(@Param('id') id: string): Promise<Photo> {
         try {
-            console.log(id)
-            // return await this.photoService.getPhotoById(id)
+            return await this.photoService.getPhotoById(id)
+        } catch(error) {
+            throw new BadRequestException(error.message);
+        }
+    }
+
+    @Put(':id')
+    async updatePhoto(
+        @Param('id') id,
+        @Body() photo: UpdatePhotoDTO
+    ): Promise<Photo> {
+        try {
+            return await this.photoService.updatePhoto(id, photo)
         } catch(error) {
             throw new BadRequestException(error.message);
         }

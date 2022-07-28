@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Photo, PhotoDocument } from './photo.entity';
 import { Model } from 'mongoose';
 import { ReturnModelType } from '@typegoose/typegoose';
+import { UpdatePhotoDTO } from './photo.dto';
 
 @Injectable()
 export class PhotoService {
@@ -24,6 +25,10 @@ export class PhotoService {
 
     async getPhotoById(id): Promise<Photo> {
         return await this.photoModel.findById(id)
+    }
+
+    async updatePhoto(id: string, photo: UpdatePhotoDTO): Promise<Photo> {
+        return await this.photoModel.findByIdAndUpdate(id, { ...photo }, { new: true });
     }
 }
 

@@ -1,12 +1,26 @@
 import {
     IsString,
-    IsInt
+    IsInt,
+    IsOptional
 } from 'class-validator';
 
 export interface PhotoDTO {
     
     url: string;
-    dateTaken: number;
+    dateTaken: string;
     placeTaken: string;
+
+}
+
+export interface UpdatePhotoDTO {
+
+    IsOptional()
+    url: string;
+
+    IsOptional()
+    dateTaken: string;
+
+    IsOptional()
+    placeTaken: number;
 
 }
